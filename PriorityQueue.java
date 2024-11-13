@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Francisco Garzon / COMP 400C
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -151,8 +151,17 @@ class PriorityQueue<E, P> {
 
     public Node add(E e, P priority) {
 
-        // YOUR CODE GOES HERE
-        return null;
+        // new node for the element and priority wanted
+        Node newNode = new Node(e, priority, size());
+
+        // adding the new node at the end of the tree (heap)
+        tree.add(newNode);
+
+        // adjusting the heap by taking the new node to its correct position by priority
+        pullUp(newNode.idx);
+
+        // return the new node as handle
+        return newNode;
     }
 
 
@@ -168,7 +177,16 @@ class PriorityQueue<E, P> {
 
     public boolean contains(E e) {
 
-        // ADD YOUR CODE HERE
+        // go through each node in the tree
+        for (Node currentNode : tree){
+
+            // check if the node's value = elements we are looking for
+            if (currentNode.value.equals(e)){
+                //found
+                return true;
+            }
+        }
+        // not found in queue
         return false;
     }
 
